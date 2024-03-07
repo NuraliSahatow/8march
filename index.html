@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./normalize.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+          * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .root {
+            position: relative;
+            min-height: 100vh;
+            background-color: pink;
+        }
+
+        .block {
+            box-sizing: border-box;
+            line-height: 1.2;
+            display: block;
+            position: fixed;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 10px;
+            max-width: 300px;
+            min-width: 100px;
+            background-color: rgb(204, 154, 162);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 9px 3px rgba(0, 0, 0, 0.5);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 1s;
+            transform: scale(1)
+        }
+
+        .block_add {
+            opacity: 1;
+        }
+    </style>
+    <div class="root">
+    
+    <svg style='position: absolute; width: 50%; height:40%; top:50%; left:50%; transform:translate(-50%,-50%);' viewBox="0 -28 512.001 512" xmlns="http://www.w3.org/2000/svg"><path style="fill: #ab7575" fill='#ab7575' d="m256 455.515625c-7.289062 0-14.316406-2.640625-19.792969-7.4375-20.683593-18.085937-40.625-35.082031-58.21875-50.074219l-.089843-.078125c-51.582032-43.957031-96.125-81.917969-127.117188-119.3125-34.644531-41.804687-50.78125-81.441406-50.78125-124.742187 0-42.070313 14.425781-80.882813 40.617188-109.292969 26.503906-28.746094 62.871093-44.578125 102.414062-44.578125 29.554688 0 56.621094 9.34375 80.445312 27.769531 12.023438 9.300781 22.921876 20.683594 32.523438 33.960938 9.605469-13.277344 20.5-24.660157 32.527344-33.960938 23.824218-18.425781 50.890625-27.769531 80.445312-27.769531 39.539063 0 75.910156 15.832031 102.414063 44.578125 26.191406 28.410156 40.613281 67.222656 40.613281 109.292969 0 43.300781-16.132812 82.9375-50.777344 124.738281-30.992187 37.398437-75.53125 75.355469-127.105468 119.308594-17.625 15.015625-37.597657 32.039062-58.328126 50.167969-5.472656 4.789062-12.503906 7.429687-19.789062 7.429687zm-112.96875-425.523437c-31.066406 0-59.605469 12.398437-80.367188 34.914062-21.070312 22.855469-32.675781 54.449219-32.675781 88.964844 0 36.417968 13.535157 68.988281 43.882813 105.605468 29.332031 35.394532 72.960937 72.574219 123.476562 115.625l.09375.078126c17.660156 15.050781 37.679688 32.113281 58.515625 50.332031 20.960938-18.253907 41.011719-35.34375 58.707031-50.417969 50.511719-43.050781 94.136719-80.222656 123.46875-115.617188 30.34375-36.617187 43.878907-69.1875 43.878907-105.605468 0-34.515625-11.605469-66.109375-32.675781-88.964844-20.757813-22.515625-49.300782-34.914062-80.363282-34.914062-22.757812 0-43.652344 7.234374-62.101562 21.5-16.441406 12.71875-27.894532 28.796874-34.609375 40.046874-3.453125 5.785157-9.53125 9.238282-16.261719 9.238282s-12.808594-3.453125-16.261719-9.238282c-6.710937-11.25-18.164062-27.328124-34.609375-40.046874-18.449218-14.265626-39.34375-21.5-62.097656-21.5zm0 0"/></svg>    </div>
+        <script>
+		const text = [
+    "Мама, ты как кофе - без тебя утро не кажется таким ярким. С 8 марта!",
+    "Мама, ты лучше любого волшебника - всегда умеешь сделать наш день чудесным. С 8 марта!",
+    "Мама, ты как супергерой без плаща - всегда приходишь на помощь. С 8 марта!",
+    "Мама, ты как шеф-повар - всегда знаешь, какие ингредиенты сделают жизнь вкуснее. С 8 марта!",
+    "Мама, ты как детектив - всегда разгадываешь наши загадки. С 8 марта!",
+    "Мама, ты как артист - всегда умеешь сделать нашу жизнь ярче. С 8 марта!",
+    "Мама, ты как путешественник - всегда открываешь для нас что-то новое. С 8 марта!",
+    "Мама, ты как художник - твоими красками наш мир становится ярче. С 8 марта!",
+    "Мама, ты как писатель - всегда знаешь, какие слова скажут больше, чем молчание. С 8 марта!",
+    "Мама, ты как музыкант - твоя мелодия звучит в наших сердцах. С 8 марта!",
+    "Мама, ты как акробат - всегда умеешь сохранять баланс. С 8 марта!",
+    "Мама, ты как астронавт - твоя любовь бесконечна, как космос. С 8 марта!",
+    "Мама, ты как библиотекарь - всегда знаешь, где найти ответы на наши вопросы. С 8 марта!",
+    "Мама, ты как врач - всегда знаешь, как нас вылечить. С 8 марта!",
+    "Мама, ты как геолог - всегда находишь в нас ценности. С 8 марта!",
+    "Мама, ты как дипломат - всегда находишь общий язык. С 8 марта!",
+    "Мама, ты как инженер - всегда знаешь, как все работает. С 8 марта!",
+    "Мама, ты как журналист - всегда знаешь, что происходит. С 8 марта!",
+    "Мама, ты как капитан - всегда ведешь нас к победе. С 8 марта!",
+    "Мама, ты как лингвист - всегда понимаешь нас. С 8 марта!",
+    "Мама, ты как математик - всегда находишь решение. С 8 марта!",
+    "Мама, ты как метеоролог - всегда знаешь, когда будет шторм. С 8 марта!",
+    "Мама, ты как навигатор - всегда указываешь путь. С 8 марта!",
+    "Мама, ты как огородник - всегда выращиваешь что-то вкусное. С 8 марта!",
+    "Мама, ты как пилот - всегда ведешь нас к цели. С 8 марта!",
+    "Мама, ты как режиссер - всегда знаешь, как сделать жизнь интересной. С 8 марта!",
+    "Мама, ты как скульптор - всегда создаешь что-то прекрасное. С 8 марта!",
+    "Мама, ты как танцор - всегда находишь ритм. С 8 марта!",
+    "Мама, ты как учитель - всегда учишь нас чему-то новому. С 8 марта!",
+    "Мама, ты как фотограф - всегда делаешь нас красивее. С 8 марта!",
+    "Мама, ты как химик - всегда находишь правильную формулу. С 8 марта!",
+    "Мама, ты как шахматист - всегда думаешь на несколько ходов вперед. С 8 марта!",
+    "Мама, ты как эколог - всегда заботишься о нашем окружении. С 8 марта!",
+    "Мама, ты как ювелир - всегда ценишь настоящие сокровища. С 8 марта!",
+    "Мама, ты как яхтсмен - всегда управляешь кораблем. С 8 марта!",
+    "Мама, ты как зоолог - всегда знаешь, как обращаться с дикой природой. С 8 марта!",
+    "Мама, ты как исследователь - всегда открываешь новые горизонты. С 8 марта!",
+    "Мама, ты как космонавт - всегда стремишься к звездам. С 8 марта!",
+    "Мама, ты как лингвист - всегда понимаешь нас. С 8 марта!",
+    "Мама, ты как мим - даже без слов все понимаешь. С 8 марта!"
+];
+const root = document.querySelector('.root');
+let trueFalse = false;
+function getRandom(arr){
+    const array = arr;
+    const arrayLength = arr.length - 1;
+    function randomNumber(){
+        const rand = Math.floor(Math.random() * (array.length));
+        return rand;
+    }
+    function getText(number){
+        return array[number];
+    }
+    return {randomNumber, getText, arrayLength};
+}
+
+const randomText = getRandom(text);
+
+const memo = (callback) => {
+
+    const cacheKey = new Map();
+    const cacheRandom = new Set();
+
+    return (e) => {
+        const key = `${e.pageX}${e.pageY}`;
+        if(cacheKey.has(key)){
+            const result = cacheKey.get(key);
+            return result;
+        }
+        let randomNumb = callback.randomNumber();
+        while(cacheRandom.has(randomNumb)){
+            randomNumb = callback.randomNumber();
+        }
+        if(cacheRandom.size === callback.arrayLength){
+            cacheRandom.clear();
+        }
+        cacheRandom.add(randomNumb);
+        if(randomNumb === 71){
+            trueFalse = true;
+        }
+        const result = callback.getText(randomNumb);
+        cacheKey.set(key, result);
+        return result;
+    }
+}
+function randomInteger(min, max) {
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+
+const createMemo = memo(randomText);
+const createTemplate = (text, posX , posY,sideX, sideY) => {
+    const template = document.createElement('div');
+    template.classList.add('block');
+    template.style.backgroundColor = `RGB(${randomInteger(170, 210)},${randomInteger(140, 175)},${randomInteger(140, 175)})`;
+    if(trueFalse){
+        template.style.backgroundColor = '#e2425c';
+        template.style.padding = '20px';
+        template.classList.add('anim');
+        trueFalse = false;
+    }
+    template.textContent = text;
+    navigator.clipboard.writeText(`${text}`)
+    template.style[sideY] = `${posY}px`;
+    template.style[sideX] = `${posX}px`;
+    return template;
+};
+const appendToContainer = (cont, max) => {
+    const container = cont;
+    let counter = 0;
+    const maxCounter = max;
+    
+let currentId = 1;
+let i = 1;
+    function clear(){
+        const containerElement = document.getElementById(i++);
+        setTimeout(()=>{
+            containerElement.classList.remove('block_add');
+            setTimeout(()=>{
+                containerElement.remove();
+            },1000)
+        })
+        counter--;
+    }
+      
+    function create(template){
+        if(counter >= maxCounter){
+            clear();
+        }
+        const block = template;
+        block.id = currentId++;
+        container.appendChild(block);
+        setTimeout(()=>{
+            block.classList.add('block_add')
+        });
+        counter++;
+    }
+
+    return create;
+}
+const append = appendToContainer(root, 20);
+
+const memoTwo = (container) => {
+    let prevValue;
+    return (pageY, pageX)=>{
+        const val = pageX + pageY;
+
+        if(prevValue === val){
+            return true;
+        }
+
+        prevValue = val;
+        return false;
+    }
+}
+const memoPos = memoTwo(root);
+
+root.addEventListener('click', (e) => {
+    const sideX = window.innerWidth - e.pageX < 150? 'right'  : 'left';
+    const sideY = window.innerHeight - e.pageY < 50? 'bottom': 'top';
+    let xPos = window.innerWidth - e.pageX < 150 ? window.innerWidth - e.pageX : e.pageX
+    let yPos = window.innerHeight - e.pageY < 50 ? window.innerHeight - e.pageY : e.pageY
+    const ttt = memoPos(e.pageY,e.pageX);
+     if(ttt === false){
+        const template = createTemplate(createMemo(e), xPos , yPos, sideX, sideY) 
+        append(template)
+    }
+})
+
+</script>
+</body>
+
+</html>
+
